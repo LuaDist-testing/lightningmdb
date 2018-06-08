@@ -258,13 +258,23 @@ static const luaL_reg R[] =
 	{NULL,	NULL}
 };
 
+#define PACK "lpack"
 int luaopen_pack(lua_State *L)
 {
 #ifdef USE_GLOBALS
  lua_register(L,"bpack",l_pack);
  lua_register(L,"bunpack",l_unpack);
 #endif
- luaL_openlib(L, LUA_STRLIBNAME, R, 0);
+#if LUA_VERSION_NUM<=501
+ luaL_openlib(L, PACK, R, 0);
+#else
+ luaL_newmetatable(L,PACK);
+ lua_set_funcs(L,PACK,R);
+ lua_settable(L,-1);
+
+ luaL_getmetatable(L,PACK);
+ lua_setfield(L,-1,"__index");
+#endif
 
  return 0;
 }
