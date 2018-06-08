@@ -1,6 +1,6 @@
 lightningmdb_lib=require "lightningmdb"
 
-lightningmdb = _VERSION>="Lua 5.2" and lightningmdb_lib or lightningmdb
+lightningmdb = _VERSION=="Lua 5.2" and lightningmdb_lib or lightningmdb
 MDB = setmetatable({}, {__index = function(t, k)
   return lightningmdb["MDB_" .. k]
 end})
@@ -20,7 +20,7 @@ end
 function test_setup(dir_)
   local dir = "./temp/"..dir_
   os.execute("mkdir -p "..dir)
-  os.execute("rm -rf "..dir.."/data.mdb")
-  os.execute("rm -rf "..dir.."/lock.mdb")
+  os.execute("rm "..dir.."/data.mdb")
+  os.execute("rm "..dir.."/lock.mdb")
   return dir
 end

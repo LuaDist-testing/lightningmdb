@@ -2,13 +2,12 @@
 # based on lpack's
 
 # change these to reflect your Lua installation
-BASE_DIR ?= /usr/local
-LUAINC ?= $(BASE_DIR)/include
-LUALIB ?= $(BASE_DIR)/lib
-LUABIN ?= $(BASE_DIR)/bin/lua
+LUAINC= /usr/local/include/
+LUALIB= /usr/local/lib/
+LUABIN= /usr/local/bin
 
-LMDB_INCDIR= /usr/local/include
-LMDB_LIBDIR= /usr/local/lib
+LMDBINC= /usr/local/include
+LMDBLIB= /usr/local/lib
 
 # probably no need to change anything below here
 platform=$(shell uname)
@@ -26,9 +25,9 @@ else
 endif
 
 WARN= -pedantic -Wall
-CFLAGS= $(INCS) $(WARN) $G -g -O2 $(PLATFORM_CFLAGS) -DUSE_GLOBALS
-LDFLAGS= -L$(LUALIB) -L$(LMDB_LIBDIR) -llmdb $(PLATFORM_LDFLAGS)
-INCS= -I$(LUAINC) -I$(LMDB_INCDIR)
+CFLAGS= $(INCS) $(WARN) $G -g -O2 $(PLATFORM_CFLAGS)
+LDFLAGS= -L$(LUALIB) -L$(LMDBLIB) -llmdb $(PLATFORM_LDFLAGS)
+INCS= -I$(LUAINC) -I$(LMDBINC)
 
 MYNAME= lightningmdb
 MYLIB= $(MYNAME)
@@ -39,7 +38,7 @@ TEST= test.lua
 all:	test
 
 test:	$T
-	$(LUABIN) $(TEST)
+	$(LUABIN)/lua $(TEST)
 
 o:	$(MYLIB).o
 

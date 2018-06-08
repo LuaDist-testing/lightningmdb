@@ -12,7 +12,7 @@ Lightningmdb is a thin wrapper around [OpenLDAP Lightning Memory-Mapped Database
 
 ## Building
 ### LMDB
-* Get LMDB by `git clone https://github.com/LMDB/lmdb`
+* Get LMDB by `git clone https://gitorious.org/mdb/mdb`
 * Building LMDB is a simple
 ```
 cd lmdb/libraries/liblmdb/
@@ -26,9 +26,6 @@ make install
 #### Manually
 * edit the Lightningmdb `Makefile` and set the Lua and Lightningmdb paths.
 * run `make` to generate the library.
-
-#### Docker
-A set of docker files are provided also, primarily for building the library against multiple Lua versions. Run `./docker/build_container.sh lua5.1` to test that the library successfully builds with Lua 5.1 (versions 5.2 and 5.3 are supported as well).
 
 # Usage
 Every attempt was made to honor the original naming convention. The documentation is therefore scarce and the [database's documentation](http://symas.com/mdb/doc/) should be used.
@@ -89,7 +86,7 @@ All the LMDB enums and defines are available through this table as well as the f
 
 
 ## lpack
-As a utility, [LHF's lpack](http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/index.html#lpack) is included in the library for Lua versions lower than 5.3.
+As a utility, [LHF's lpack](http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/index.html#lpack) is included in the library.
 
 ### Usage
 The following is copied verbatim from lpack's original documentation.

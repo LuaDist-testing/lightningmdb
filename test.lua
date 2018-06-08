@@ -33,8 +33,9 @@ local function basic_test()
   t:renew()
   --t:abort()
   local db = t:dbi_open(nil,0)
-  print(string.format("-- txn stat [%d] --",t:id()))
+  print("-- txn stat --")
   pt(t:stat(db))
+
   t:abort()
   e:close()
 end
@@ -76,5 +77,3 @@ end
 
 basic_test()
 grow_db()
-
-print("\n\n\n**** If you are seeing this, all is good (at least as far as lightningmdb is concerned). ****")
